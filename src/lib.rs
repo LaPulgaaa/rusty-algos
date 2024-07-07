@@ -19,5 +19,8 @@ mod tests {
 
         let sel_opt_arr = crate::sort::select_sort_opt(arr.clone());
         assert_eq!(sel_opt_arr, vec![1,2,4,5,8]);
+
+        let ins_arr= crate::sort::insertion_sort(arr.clone());
+        assert_eq!(ins_arr, vec![1,2,4,5,8]);
     }
 }

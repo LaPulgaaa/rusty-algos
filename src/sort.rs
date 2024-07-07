@@ -86,3 +86,29 @@ pub fn select_sort_opt(mut arr: Vec<i32>)->Vec<i32>{
 
     return arr;
 }
+
+// O(N^2) worst case O(N) best case -- O(1)
+pub fn insertion_sort(mut arr: Vec<i32>)->Vec<i32>{
+
+    if arr.len()==0 || arr.len()==1 {
+        return arr;
+    }
+    
+    for i in 1..arr.len(){
+        let key = arr[i];
+        let mut j = i;
+        
+        while arr[j-1]>key{
+            arr[j] = arr[j-1];
+            j-=1;
+            
+            if j==0{
+                break;
+            }
+        }
+        
+        arr[j] = key;
+    }
+    
+    return arr;
+}
