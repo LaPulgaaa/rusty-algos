@@ -1,5 +1,5 @@
 pub mod sort;
-
+pub mod partition;
 
 #[cfg(test)]
 mod tests {
@@ -22,5 +22,17 @@ mod tests {
 
         let ins_arr= crate::sort::insertion_sort(arr.clone());
         assert_eq!(ins_arr, vec![1,2,4,5,8]);
+
+        // let ret = crate::sort::merge_sort(vec![2,5,9,13,20,3,4,7,15,16],0,9);
+        // assert_eq!(ret,vec![2,3,4,5,7,9,13,15,16,20]);
+    }
+
+    #[test]
+    fn test_partition(){
+        let mut arr = vec![2,4,1,3,5];
+        let len = arr.len();
+        let num_of_inv = crate::partition::count_inv(&mut arr, 0, len-1);
+        assert_eq!(num_of_inv,3);
+        assert_eq!(arr, vec![1,2,3,4,5]);
     }
 }
