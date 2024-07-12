@@ -1,5 +1,8 @@
+pub mod util;
+
 pub mod sort;
 pub mod partition;
+
 
 #[cfg(test)]
 mod tests {
@@ -34,5 +37,10 @@ mod tests {
         let num_of_inv = crate::partition::count_inv(&mut arr, 0, len-1);
         assert_eq!(num_of_inv,3);
         assert_eq!(arr, vec![1,2,3,4,5]);
+
+        let mut arr2 = vec![3,8,6,12,10,7];
+        let pivot = crate::partition::lamutopart(&mut arr2, 0, 5);
+        assert_eq!(pivot,2);
+        assert_eq!(arr2,vec![3,6,7,12,10,8]);
     }
 }

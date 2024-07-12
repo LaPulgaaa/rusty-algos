@@ -1,3 +1,5 @@
+use crate::util::swap;
+
 
 pub fn count_inv(arr: &mut Vec<i32>, l: usize, r:usize)->i32{
     let mut ret:i32 =0;
@@ -62,3 +64,20 @@ fn merge_and_count(arr:&mut Vec<i32>, l: usize, mid: usize, r: usize) ->i32{
     
 }
 
+
+// O(N) 0(1) Not stable
+pub fn lamutopart(arr: &mut Vec<i32>, l: usize, h: usize) -> usize{
+    let pivot: i32 = arr[h];
+    
+    let mut i: usize = l;
+    
+    for index in l..h+1{
+        if arr[index]<pivot{
+            swap(arr, i, index);
+            i+=1;
+        }
+    }
+    
+    swap(arr, i, h);
+    return i;
+}
