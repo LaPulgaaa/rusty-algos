@@ -1,0 +1,37 @@
+name: Cargo-algorithms
+
+on:
+  push:
+    branches: ["master","*.x"]
+  pull_request:
+    branches: 
+      - "master"
+      - "*.x"
+
+defaults:
+  run: 
+    shell: bash
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: true
+      matrix: 
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    
+
+    steps:
+
+    - name: Dependencies
+      uses: actions/checkout@v2
+    - name: Build
+      run: cargo build --verbose
+      env: 
+        RUST_BACKTRACE: 1
+    - name: test
+      run: cargo test --all --verbose
