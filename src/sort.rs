@@ -1,3 +1,5 @@
+use crate::partition::{lomutopart, hoare};
+
 // O(N^2) O(1) stable
 pub fn bubble_sort(mut arr: Vec<i32>)->Vec<i32>{
     for i in 0..arr.len()-1{
@@ -111,4 +113,21 @@ pub fn insertion_sort(mut arr: Vec<i32>)->Vec<i32>{
     }
     
     return arr;
+}
+
+// O(NlogN) average/best O(N^2) worst case
+pub fn quick_sort_lomuto(arr: &mut Vec<i32>, l: usize, h:usize){
+    if l<h {
+        let part = lomutopart(arr, l, h);
+        quick_sort_lomuto(arr, l, part-1);
+        quick_sort_lomuto(arr, part+1, h);
+    }
+}
+
+pub fn quick_sort_hoare(arr: &mut Vec<i32>, l: usize, h:usize){
+    if l<h {
+        let part = hoare(arr, l, h);
+        quick_sort_hoare(arr, l, part);
+        quick_sort_hoare(arr, part+1, h);
+    }
 }
