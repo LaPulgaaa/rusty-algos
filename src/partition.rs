@@ -66,7 +66,8 @@ fn merge_and_count(arr:&mut Vec<i32>, l: usize, mid: usize, r: usize) ->i32{
 
 
 // O(N) 0(1) Not stable
-pub fn lamutopart(arr: &mut Vec<i32>, l: usize, h: usize) -> usize{
+// NOT CORRECT
+pub fn lomutopart(arr: &mut Vec<i32>, l: usize, h: usize) -> usize{
     let pivot: i32 = arr[h];
     
     let mut i: usize = l;
