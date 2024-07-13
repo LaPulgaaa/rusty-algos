@@ -81,3 +81,42 @@ pub fn lamutopart(arr: &mut Vec<i32>, l: usize, h: usize) -> usize{
     swap(arr, i, h);
     return i;
 }
+
+// 0(N)
+// ~3* faster than lomuto
+pub fn hoare(arr: &mut Vec<i32>, l: usize, h:usize)->usize {
+    let pivot: i32 = arr[l];
+
+    let mut flag = false;
+
+    let (mut i, mut j):(usize, usize) = (l,h+1);
+
+    loop {
+
+        while {
+            if flag==true {
+                // in the standard algo we increase i inside the do block 
+                // but for safety concern we assign `l` to `i` not `l-1`. 
+                // Hence don't += 1 on first iteration.
+                i+=1;
+            }
+
+            flag = true;
+
+            arr[i]<pivot
+        }{/* do-while mock */}
+
+        while {
+            j-=1;
+
+            arr[j]>pivot
+        }{/* do while mock */}
+
+        if i>=j{
+            return j; // return the last index that satisfies the pivot.
+        }
+
+        swap(arr, i, j);
+    }
+
+}
