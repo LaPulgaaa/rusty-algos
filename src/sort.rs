@@ -119,7 +119,12 @@ pub fn insertion_sort(mut arr: Vec<i32>)->Vec<i32>{
 pub fn quick_sort_lomuto(arr: &mut Vec<i32>, l: usize, h:usize){
     if l<h {
         let part = lomutopart(arr, l, h);
-        quick_sort_lomuto(arr, l, part-1);
+
+        //when the partition is at index 0; there are no element before it to sort. 
+        if part!=0 {
+            quick_sort_lomuto(arr, l, part-1);
+        }
+       
         quick_sort_lomuto(arr, part+1, h);
     }
 }

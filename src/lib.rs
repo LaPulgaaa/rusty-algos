@@ -29,11 +29,11 @@ mod tests {
         let ret = crate::sort::merge_sort(vec![2,5,9,13,20,3,4,7,15,16],0,9);
         assert_eq!(ret,vec![2,3,4,5,7,9,13,15,16,20],"merge sort testing");
 
-        let mut lomuto_arr = vec![3,8,6,12,10,7];
+        let mut lomuto_arr = vec![6,5,3,1,8,7,6,4];
         let len = lomuto_arr.len();
         crate::sort::quick_sort_lomuto(&mut lomuto_arr, 0, len-1);
 
-        assert_eq!(lomuto_arr,vec![3,6,7,8,10,12]);
+        assert_eq!(lomuto_arr,vec![1,3,4,5,6,6,7,8]);
 
         let mut hoare_arr = vec![6,5,3,1,8,7,6,4];
         crate::sort::quick_sort_hoare(&mut hoare_arr, 0, 7);
