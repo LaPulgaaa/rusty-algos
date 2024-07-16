@@ -26,8 +26,8 @@ mod tests {
         let ins_arr= crate::sort::insertion_sort(arr.clone());
         assert_eq!(ins_arr, vec![1,2,4,5,8]);
 
-        // let ret = crate::sort::merge_sort(vec![2,5,9,13,20,3,4,7,15,16],0,9);
-        // assert_eq!(ret,vec![2,3,4,5,7,9,13,15,16,20]);
+        let ret = crate::sort::merge_sort(vec![2,5,9,13,20,3,4,7,15,16],0,9);
+        assert_eq!(ret,vec![2,3,4,5,7,9,13,15,16,20],"merge sort testing");
 
         let mut lomuto_arr = vec![3,8,6,12,10,7];
         let len = lomuto_arr.len();

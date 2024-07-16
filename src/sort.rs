@@ -131,3 +131,49 @@ pub fn quick_sort_hoare(arr: &mut Vec<i32>, l: usize, h:usize){
         quick_sort_hoare(arr, part+1, h);
     }
 }
+
+// O(NlogN) O(N)
+fn merge(mut arr: Vec<i32>,start:usize, mid:usize, end:usize )->Vec<i32>{
+
+    let len1 = mid-start+1;
+    let len2 = end-mid;
+
+    let mut arr1= vec![0; len1];
+    let mut arr2= vec![0; len2];
+
+    arr1.copy_from_slice(&arr[start..mid+1]);
+    arr2.copy_from_slice(&arr[mid+1..end+1]);
+
+    let (mut i, mut j, mut k):(usize, usize, usize)=(0,0,start);
+
+    while i<len1 || j<len2 {
+        if j>=len2 || (i<len1 && arr1[i]<=arr2[j]){
+            arr[k] = arr1[i];
+            k+=1;
+            i+=1;
+        }
+        else{
+            arr[k] = arr2[j];
+            k+=1;
+            j+=1;
+        }
+    }
+
+    return arr;
+}
+
+pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize)->Vec<i32>{
+    if arr.len()==0 || arr.len()==1{
+        return arr;
+    }
+
+    if end>start{
+        let mid = start+(end-start)/2;
+        arr=merge_sort(arr, start, mid);
+        arr=merge_sort(arr, mid+1, end);
+        arr=merge(arr,start,mid,end);
+    }
+
+
+    return arr;
+}
