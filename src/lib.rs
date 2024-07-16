@@ -2,6 +2,7 @@ pub mod util;
 
 pub mod sort;
 pub mod partition;
+pub mod searching;
 
 
 #[cfg(test)]
@@ -53,5 +54,13 @@ mod tests {
         let pivot = crate::partition::lomutopart(&mut arr2, 0, 5);
         assert_eq!(pivot,2);
         assert_eq!(arr2,vec![3,6,7,12,10,8]);
+    }
+
+    #[test]
+    fn test_searching(){
+        let mut arr = vec![3,2,3,1,2,4,5,5,6];
+        let k: usize = 9;
+        let kthsmallest = 6;
+        assert_eq!(crate::searching::quick_select(&mut arr, k),kthsmallest);
     }
 }
