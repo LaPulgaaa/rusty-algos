@@ -33,5 +33,9 @@ jobs:
       run: cargo build --verbose
       env: 
         RUST_BACKTRACE: 1
+    - name: Format
+      run: cargo fmt -- --check
+    - name: Clippy/Lint
+      run: cargo clippy --all-targets -- -D warnings
     - name: test
       run: cargo test --all --verbose
