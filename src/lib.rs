@@ -62,5 +62,13 @@ mod tests {
         let k: usize = 9;
         let kthsmallest = 6;
         assert_eq!(crate::searching::quick_select(&mut arr, k), kthsmallest);
+
+        // boyer-moore's algorithm
+
+        assert_eq!(
+            crate::searching::get_majority(&[4, 7, 0, 5, 3, 4, 6, 4]),
+            -1
+        );
+        assert_eq!(crate::searching::get_majority(&[4, 7, 4, 4, 3, 4, 6, 4]), 4);
     }
 }
