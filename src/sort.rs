@@ -58,13 +58,13 @@ pub fn select_sort(mut arr: Vec<i32>)->Vec<i32>{
         i += 1;
     }
 
-    return temp;
+    temp
 }
 
 // O(N^2) O(1) unstable
 pub fn select_sort_opt(mut arr: Vec<i32>)->Vec<i32>{
 
-    if arr.len()==0 || arr.len()==1 {
+    if arr.is_empty() || arr.len()==1 {
         return arr;
     }
 
@@ -77,18 +77,16 @@ pub fn select_sort_opt(mut arr: Vec<i32>)->Vec<i32>{
             }
         }
 
-        let temp = arr[rest_min];
-        arr[rest_min] = arr[i];
-        arr[i] = temp;
+        arr.swap(rest_min, i);
     }
 
-    return arr;
+    arr
 }
 
 // O(N^2) worst case O(N) best case -- O(1)
 pub fn insertion_sort(mut arr: Vec<i32>)->Vec<i32>{
 
-    if arr.len()==0 || arr.len()==1 {
+    if arr.is_empty()|| arr.len()==1 {
         return arr;
     }
     
@@ -108,7 +106,7 @@ pub fn insertion_sort(mut arr: Vec<i32>)->Vec<i32>{
         arr[j] = key;
     }
     
-    return arr;
+    arr
 }
 
 // O(NlogN) average/best O(N^2) worst case
@@ -160,11 +158,11 @@ fn merge(mut arr: Vec<i32>,start:usize, mid:usize, end:usize )->Vec<i32>{
         }
     }
 
-    return arr;
+    arr
 }
 
 pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize)->Vec<i32>{
-    if arr.len()==0 || arr.len()==1{
+    if arr.is_empty()|| arr.len()==1{
         return arr;
     }
 
@@ -176,5 +174,5 @@ pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize)->Vec<i32>{
     }
 
 
-    return arr;
+    arr
 }

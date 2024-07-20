@@ -1,7 +1,5 @@
-use crate::util::swap;
 
-
-pub fn count_inv(arr: &mut Vec<i32>, l: usize, r:usize)->i32{
+pub fn count_inv(arr: &mut [i32], l: usize, r:usize)->i32{
     let mut ret:i32 =0;
     
     if l<r{
@@ -13,10 +11,10 @@ pub fn count_inv(arr: &mut Vec<i32>, l: usize, r:usize)->i32{
         ret+=merge_and_count(arr,l,mid,r);
     }
     
-    return ret;
+    ret
 }
 
-fn merge_and_count(arr:&mut Vec<i32>, l: usize, mid: usize, r: usize) ->i32{
+fn merge_and_count(arr:&mut [i32], l: usize, mid: usize, r: usize) ->i32{
     
     let len1: usize = mid-l+1;
     let len2: usize = r-mid;
@@ -60,31 +58,31 @@ fn merge_and_count(arr:&mut Vec<i32>, l: usize, mid: usize, r: usize) ->i32{
         j+=1;
     }
     
-    return inversion;
+    inversion
     
 }
 
 
 // O(N) 0(1) Not stable
-pub fn lomutopart(arr: &mut Vec<i32>, l: usize, h: usize) -> usize{
+pub fn lomutopart(arr: &mut [i32], l: usize, h: usize) -> usize{
     let pivot: i32 = arr[h];
     
     let mut i: usize = l;
     
     for index in l..h{
-        if arr[index]<pivot{
-            swap(arr, i, index);
+        if arr[index]<pivot {
+            arr.swap(i, index);
             i+=1;
         }
     }
     
-    swap(arr, i, h);
-    return i;
+    arr.swap(i, h);
+    i
 }
 
 // 0(N)
 // ~3* faster than lomuto
-pub fn hoare(arr: &mut Vec<i32>, l: usize, h:usize)->usize {
+pub fn hoare(arr: &mut [i32], l: usize, h:usize)->usize {
     let pivot: i32 = arr[l];
 
     let mut flag = false;
@@ -94,7 +92,7 @@ pub fn hoare(arr: &mut Vec<i32>, l: usize, h:usize)->usize {
     loop {
 
         while {
-            if flag==true {
+            if flag {
                 // in the standard algo we increase i inside the do block 
                 // but for safety concern we assign `l` to `i` not `l-1`. 
                 // Hence don't += 1 on first iteration.

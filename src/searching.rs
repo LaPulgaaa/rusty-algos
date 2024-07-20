@@ -1,6 +1,6 @@
 use crate::partition::lomutopart;
 
-pub fn quick_select(arr: &mut Vec<i32>, k: usize)->i32{
+pub fn quick_select(arr: &mut [i32], k: usize)->i32{
 
     let (mut l, mut h):(usize,usize) = (0,arr.len()-1);
 
@@ -20,5 +20,5 @@ pub fn quick_select(arr: &mut Vec<i32>, k: usize)->i32{
         }
     }
 
-    return -1;
+    -1
 }
