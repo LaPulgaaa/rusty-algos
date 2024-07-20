@@ -116,7 +116,7 @@ pub fn hoare(arr: &mut Vec<i32>, l: usize, h:usize)->usize {
             return j; // return the last index that satisfies the pivot.
         }
 
-        swap(arr, i, j);
+        arr.swap(i, j)
     }
 
 }
