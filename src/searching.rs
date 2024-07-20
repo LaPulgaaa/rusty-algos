@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 use crate::partition::lomutopart;
 
 pub fn quick_select(arr: &mut [i32], k: usize)->i32{
@@ -7,16 +9,16 @@ pub fn quick_select(arr: &mut [i32], k: usize)->i32{
     while l<=h{
         let part = lomutopart(arr, l, h);
 
-        if part == k-1 {
-            return arr[part];
-        }
-
-        else if part < k-1 {
-            l = part+1;
-        }
-
-        else {
-            h = part-1;
+        match part.cmp(&(k-1)){
+            Ordering::Equal =>{
+                return arr[part];
+            },
+            Ordering::Less => {
+                l = part-1;
+            }
+            Ordering::Greater =>{
+                h = part-1;
+            }
         }
     }
 
