@@ -155,7 +155,7 @@ fn merge(mut arr: Vec<i32>, start: usize, mid: usize, end: usize) -> Vec<i32> {
     arr
 }
 
-pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize) -> Vec<i32> {
+pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize) ->Vec<i32> {
     if arr.is_empty() || arr.len() == 1 {
         return arr;
     }
