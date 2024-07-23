@@ -1,3 +1,4 @@
+pub mod misc;
 pub mod partition;
 pub mod searching;
 pub mod sort;
@@ -70,5 +71,13 @@ mod tests {
             -1
         );
         assert_eq!(crate::searching::get_majority(&[4, 7, 4, 4, 3, 4, 6, 4]), 4);
+    }
+
+    #[test]
+    fn test_misc() {
+        // min difference in an array
+        assert_eq!(crate::misc::min_diff(&mut [1, 8, 12, 5, 18]), 3);
+        assert_eq!(crate::misc::min_diff(&mut [4, 9, 1, 32, 13]), 3);
+        assert_ne!(crate::misc::min_diff(&mut [1, 2, 3, 1, 5]), 1);
     }
 }
