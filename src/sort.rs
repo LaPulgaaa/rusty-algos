@@ -1,3 +1,5 @@
+use std::cmp::min;
+
 use crate::partition::{hoare, lomutopart};
 
 // O(N^2) O(1) stable
@@ -168,4 +170,30 @@ pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize) -> Vec<i32> {
     }
 
     arr
+}
+
+/* Below code contains common problems from leetcode and other platforms that use sorting algos */
+
+// chocolate distribution problem
+
+pub fn choco_dist(arr: &mut [i32], m: i32) -> i32 {
+    if m > arr.len().try_into().unwrap() {
+        return -1;
+    }
+
+    arr.sort();
+
+    let head: usize = (m - 1).try_into().unwrap();
+
+    let mut min_diff = i32::MAX;
+
+    for index in head..arr.len() {
+        min_diff = min(min_diff, arr[index] - arr[index - head]);
+    }
+
+    if min_diff == i32::MAX {
+        return -1;
+    }
+
+    min_diff
 }

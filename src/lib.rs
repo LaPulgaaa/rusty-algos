@@ -80,4 +80,14 @@ mod tests {
         assert_eq!(crate::misc::min_diff(&mut [4, 9, 1, 32, 13]), 3);
         assert_ne!(crate::misc::min_diff(&mut [1, 2, 3, 1, 5]), 1);
     }
+
+    #[test]
+    fn test_problems() {
+        assert_eq!(
+            crate::sort::choco_dist(&mut [3, 4, 1, 9, 56, 7, 9, 12], 5),
+            6
+        );
+        assert_eq!(crate::sort::choco_dist(&mut [7, 3, 2, 4, 9, 12, 56], 3), 2);
+        assert_eq!(crate::sort::choco_dist(&mut [5, 3, 2, 8, 4], 7), -1);
+    }
 }
