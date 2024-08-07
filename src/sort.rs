@@ -172,6 +172,25 @@ pub fn merge_sort(mut arr: Vec<i32>, start: usize, end: usize) -> Vec<i32> {
     arr
 }
 
+pub fn dutch_national_flag_algo(arr: &mut [i32]) {
+    let mut lo: usize = 0;
+    let mut mid: usize = 0;
+    let mut hi: usize = arr.len() - 1;
+
+    while mid <= hi {
+        if arr[mid] == 0 {
+            arr.swap(mid, lo);
+            mid += 1;
+            lo += 1;
+        } else if arr[mid] == 1 {
+            mid += 1;
+        } else {
+            arr.swap(hi, mid);
+            hi -= 1;
+        }
+    }
+}
+
 /* Below code contains common problems from leetcode and other platforms that use sorting algos */
 
 // chocolate distribution problem

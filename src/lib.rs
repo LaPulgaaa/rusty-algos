@@ -41,6 +41,10 @@ mod tests {
         let mut hoare_arr = vec![6, 5, 3, 1, 8, 7, 6, 4];
         crate::sort::quick_sort_hoare(&mut hoare_arr, 0, 7);
         assert_eq!(hoare_arr, vec![1, 3, 4, 5, 6, 6, 7, 8]);
+
+        let mut dutch_arr = vec![2, 0, 2, 1, 1, 0];
+        crate::sort::dutch_national_flag_algo(&mut dutch_arr);
+        assert_eq!(dutch_arr, [0, 0, 1, 1, 2, 2]);
     }
 
     #[test]
