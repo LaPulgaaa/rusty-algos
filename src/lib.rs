@@ -2,6 +2,7 @@ pub mod misc;
 pub mod partition;
 pub mod searching;
 pub mod sort;
+pub mod strings;
 
 #[cfg(test)]
 mod tests {
@@ -93,5 +94,15 @@ mod tests {
         );
         assert_eq!(crate::sort::choco_dist(&mut [7, 3, 2, 4, 9, 12, 56], 3), 2);
         assert_eq!(crate::sort::choco_dist(&mut [5, 3, 2, 8, 4], 7), -1);
+    }
+
+    #[test]
+    fn test_strings() {
+        assert!(crate::strings::check_palindrome(String::from(
+            "A man, a plan, a canal: Panama"
+        )));
+        assert!(!crate::strings::check_palindrome(String::from(
+            "race a car"
+        )));
     }
 }
