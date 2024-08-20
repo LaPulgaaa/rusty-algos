@@ -24,3 +24,9 @@ pub fn check_palindrome(s: String) -> bool {
 
     false
 }
+
+pub fn reverse(str: String) -> String {
+    let s = str.clone();
+    let arr: Vec<&str> = s.split_whitespace().rev().collect();
+    arr.join(" ")
+}

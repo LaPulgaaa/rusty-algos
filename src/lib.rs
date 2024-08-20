@@ -104,5 +104,10 @@ mod tests {
         assert!(!crate::strings::check_palindrome(String::from(
             "race a car"
         )));
+
+        assert_eq!(
+            crate::strings::reverse(String::from("the sky is blue")),
+            String::from("blue is sky the")
+        );
     }
 }
