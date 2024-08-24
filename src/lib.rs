@@ -118,5 +118,14 @@ mod tests {
             String::from("AB"),
             String::from("ABCD")
         ));
+
+        assert!(crate::strings::anagram(
+            String::from("listen"),
+            String::from("silent")
+        ));
+        assert!(!crate::strings::anagram(
+            String::from("cat"),
+            String::from("rat")
+        ));
     }
 }

@@ -52,3 +52,13 @@ pub fn is_subsequence(s: String, t: String) -> bool {
 
     true
 }
+
+pub fn anagram(s: String, t: String) -> bool {
+    let mut svec = s.chars().collect::<Vec<char>>();
+    let mut tvec = t.chars().collect::<Vec<char>>();
+
+    svec.sort_unstable();
+    tvec.sort_unstable();
+
+    svec == tvec
+}
