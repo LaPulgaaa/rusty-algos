@@ -30,3 +30,25 @@ pub fn reverse(str: String) -> String {
     let arr: Vec<&str> = s.split_whitespace().rev().collect();
     arr.join(" ")
 }
+
+pub fn is_subsequence(s: String, t: String) -> bool {
+    if s.is_empty() {
+        return true;
+    }
+
+    let mut t_arr = t.chars();
+
+    let s_itr = s.chars();
+
+    for sch in s_itr {
+        loop {
+            match t_arr.next() {
+                Some(tch) if tch == sch => break,
+                None => return false,
+                _ => (),
+            }
+        }
+    }
+
+    true
+}

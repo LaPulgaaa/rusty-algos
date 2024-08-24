@@ -109,5 +109,14 @@ mod tests {
             crate::strings::reverse(String::from("the sky is blue")),
             String::from("blue is sky the")
         );
+
+        assert!(!crate::strings::is_subsequence(
+            String::from("axc"),
+            String::from("ahbgdc")
+        ));
+        assert!(crate::strings::is_subsequence(
+            String::from("AB"),
+            String::from("ABCD")
+        ));
     }
 }
