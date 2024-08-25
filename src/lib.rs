@@ -127,5 +127,29 @@ mod tests {
             String::from("cat"),
             String::from("rat")
         ));
+        assert_eq!(
+            crate::strings::left_most_repeating_index(String::from("abccbaacz")),
+            2
+        );
+        assert_eq!(
+            crate::strings::left_most_repeating_index(String::from("abcdd")),
+            3
+        );
+        assert_eq!(
+            crate::strings::left_most_repeating_char(String::from("abccbaacz")),
+            'c'
+        );
+        assert_eq!(
+            crate::strings::left_most_repeating_char(String::from("abcdd")),
+            'd'
+        );
+        assert_eq!(
+            crate::strings::left_most_non_repeating(String::from("aabb")),
+            -1
+        );
+        assert_eq!(
+            crate::strings::left_most_non_repeating(String::from("leetcode")),
+            0
+        );
     }
 }

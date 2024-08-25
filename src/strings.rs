@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 pub fn check_palindrome(s: String) -> bool {
     let mut str = s.clone();
 
@@ -61,4 +63,51 @@ pub fn anagram(s: String, t: String) -> bool {
     tvec.sort_unstable();
 
     svec == tvec
+}
+
+pub fn left_most_repeating_index(s: String) -> usize {
+    let store = &mut [-1; 256];
+
+    let arr = s.into_bytes();
+
+    for (index, &bval) in arr.iter().enumerate() {
+        let bvali: usize = bval.into();
+
+        let num = &mut store[bvali];
+
+        if *num != -1 {
+            return (*num).try_into().unwrap();
+        } else {
+            *num = index as i32;
+        }
+    }
+
+    unreachable!("Invalid input")
+}
+
+pub fn left_most_repeating_char(s: String) -> char {
+    let mut hs = HashSet::new();
+    s.chars().find(|&c| !hs.insert(c)).unwrap()
+}
+
+pub fn left_most_non_repeating(s: String) -> i32 {
+    let arr = s.into_bytes();
+    let store = &mut [-1; 256];
+
+    for &by in arr.iter() {
+        let index: usize = by.into();
+        let val = &mut store[index];
+
+        *val += 1;
+    }
+
+    for (i, &by) in arr.iter().enumerate() {
+        let index: usize = by.into();
+        let val = store[index];
+        if val == 0 {
+            return i as i32;
+        }
+    }
+
+    -1
 }
