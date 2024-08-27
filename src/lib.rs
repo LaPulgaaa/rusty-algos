@@ -152,4 +152,16 @@ mod tests {
             0
         );
     }
+
+    #[test]
+    fn text_search() {
+        assert_eq!(
+            crate::strings::naive_search(String::from("ABABABCD"), String::from("ABAB")),
+            [0, 2]
+        );
+        assert_eq!(
+            crate::strings::naive_search(String::from("AAAAA"), String::from("AAA")),
+            [0, 1, 2]
+        );
+    }
 }

@@ -111,3 +111,32 @@ pub fn left_most_non_repeating(s: String) -> i32 {
 
     -1
 }
+
+// ---------- pattern search ----------
+
+pub fn naive_search(text: String, patt: String) -> Vec<usize> {
+    let mut indexs = Vec::new();
+    let m = text.len();
+    let n = patt.len();
+
+    for i in 0..(m - n + 1) {
+        let mut matched: bool = true;
+        let mut textitr = text.chars().skip(i);
+        for pch in patt.chars() {
+            match textitr.next() {
+                Some(tch) if tch != pch => {
+                    matched = false;
+                    break;
+                }
+                None => return indexs,
+                _ => (),
+            }
+        }
+
+        if matched {
+            indexs.push(i);
+        }
+    }
+
+    indexs
+}
