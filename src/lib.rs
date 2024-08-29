@@ -163,5 +163,11 @@ mod tests {
             crate::strings::naive_search(String::from("AAAAA"), String::from("AAA")),
             [0, 1, 2]
         );
+
+        // -- RabinKarp --
+        assert_eq!(
+            crate::strings::rabin_karp(String::from("rust"), String::from("Rust is a systems programming language focused on safety, speed, and concurrency. Rust has been gaining popularity due to its ability to prevent memory safety issues and provide zero-cost abstractions. Developers are choosing Rust for building reliable and efficient software, and Rust's ownership model ensures that data races are minimized. Rust's ecosystem is growing, with a strong community contributing to its libraries and tools. If you're looking to learn a new programming language, Rust might be an excellent choice because Rust offers a unique combination of power and safety.")),
+            7
+        );
     }
 }

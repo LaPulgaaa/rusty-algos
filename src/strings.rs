@@ -140,3 +140,64 @@ pub fn naive_search(text: String, patt: String) -> Vec<usize> {
 
     indexs
 }
+
+const Q: i32 = 1000;
+const D: i32 = 10;
+pub fn rabin_karp(mut patt: String, mut text: String) -> usize {
+    let mut matched: Vec<usize> = Vec::new();
+
+    let m: usize = patt.len();
+    let n: usize = text.len();
+
+    patt = patt.to_lowercase();
+    text = text.to_lowercase();
+
+    let bpatt = patt.clone().into_bytes();
+    let btext = text.clone().into_bytes();
+
+    let mut h: i32 = 1;
+
+    // calc d^m-1%q
+    for _i in 0..m {
+        h = (h * D) % Q;
+    }
+
+    // calc t and p
+    let mut p: i32 = 0;
+    let mut t: i32 = 0;
+
+    for i in 0..m {
+        p = ((p * D) + (bpatt[i] as i32)) % Q;
+        t = ((t * D) + (btext[i] as i32)) % Q;
+    }
+
+    for i in 0..(n - m + 1) {
+        if p == t {
+            let mut flag: bool = false;
+            let mut titr = text.chars().skip(i);
+            for pch in patt.chars() {
+                match titr.next() {
+                    Some(tch) if tch != pch => {
+                        flag = true;
+                        break;
+                    }
+                    None => return matched.len(),
+                    _ => (),
+                }
+            }
+
+            if !flag {
+                matched.push(i);
+            }
+        }
+        // donot calculate t for the last counter since there is no comparison after it.
+        if i < (n - m) {
+            t = (D * (t - ((btext[i] as i32) * h)) + (btext[i + m] as i32)) % Q;
+
+            if t < 0 {
+                t += Q;
+            }
+        }
+    }
+    matched.len()
+}
