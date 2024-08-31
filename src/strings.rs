@@ -141,16 +141,17 @@ pub fn naive_search(text: String, patt: String) -> Vec<usize> {
     indexs
 }
 
-const Q: i32 = 1000;
-const D: i32 = 10;
+const Q: i32 = 100000;
+const D: i32 = 1000;
 pub fn rabin_karp(mut patt: String, mut text: String) -> usize {
     let mut matched: Vec<usize> = Vec::new();
-
     let m: usize = patt.len();
     let n: usize = text.len();
 
-    patt = patt.to_lowercase();
-    text = text.to_lowercase();
+    // Since we are using a one mut String, we can not use
+    // any immutable Strings. We have to clone them to use them.
+    patt.make_ascii_lowercase();
+    text.make_ascii_lowercase();
 
     let bpatt = patt.clone().into_bytes();
     let btext = text.clone().into_bytes();
@@ -173,16 +174,18 @@ pub fn rabin_karp(mut patt: String, mut text: String) -> usize {
 
     for i in 0..(n - m + 1) {
         if p == t {
+            println!("{}", i);
             let mut flag: bool = false;
-            let mut titr = text.chars().skip(i);
-            for pch in patt.chars() {
-                match titr.next() {
-                    Some(tch) if tch != pch => {
-                        flag = true;
-                        break;
-                    }
-                    None => return matched.len(),
-                    _ => (),
+            for i in patt
+                .clone()
+                .into_bytes()
+                .iter()
+                .zip(text.clone().into_bytes().iter().skip(i))
+            {
+                let (pby, tby) = i;
+                if tby != pby {
+                    flag = true;
+                    break;
                 }
             }
 
