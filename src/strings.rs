@@ -121,15 +121,11 @@ pub fn naive_search(text: String, patt: String) -> Vec<usize> {
 
     for i in 0..(m - n + 1) {
         let mut matched: bool = true;
-        let mut textitr = text.chars().skip(i);
-        for pch in patt.chars() {
-            match textitr.next() {
-                Some(tch) if tch != pch => {
-                    matched = false;
-                    break;
-                }
-                None => return indexs,
-                _ => (),
+        for ch in patt.chars().zip(text.chars().skip(i)) {
+            let (pch, tch) = ch;
+            if pch != tch {
+                matched = false;
+                break;
             }
         }
 
