@@ -99,6 +99,16 @@ mod tests {
             crate::misc::frequency_sort(String::from("cccaaab")),
             String::from("aaacccb")
         );
+
+        assert_eq!(
+            crate::misc::remove_outer_parentheses(String::from("(()())(())(()(()))")),
+            String::from("()()()()(())")
+        );
+
+        assert_eq!(
+            crate::misc::remove_outer_parentheses_one_liner(String::from("(()())(())(()(()))")),
+            String::from("()()()()(())")
+        )
     }
 
     #[test]

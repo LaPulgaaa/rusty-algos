@@ -47,3 +47,51 @@ pub fn frequency_sort(s: String) -> String {
 
     ret
 }
+
+//remove outer_most parantheses
+pub fn remove_outer_parentheses(s: String) -> String {
+    let mut answer: String = String::new();
+    let mut depth: i32 = 0;
+
+    for ch in s.chars() {
+        if ch == '(' {
+            if depth > 0 {
+                answer.push(ch);
+            }
+
+            depth += 1;
+        } else {
+            depth -= 1;
+            if depth > 0 {
+                answer.push(ch);
+            }
+        }
+    }
+
+    answer
+}
+
+pub fn remove_outer_parentheses_one_liner(s: String) -> String {
+    let mut st = vec![];
+    s.chars()
+        .map(|x| match x {
+            '(' => {
+                st.push(true);
+                if st.len() >= 2 {
+                    return "(";
+                }
+
+                ""
+            }
+            ')' => {
+                st.pop();
+                if !st.is_empty() {
+                    return ")";
+                }
+
+                ""
+            }
+            _ => "",
+        })
+        .collect::<String>()
+}
