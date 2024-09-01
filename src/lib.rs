@@ -94,6 +94,11 @@ mod tests {
         );
         assert_eq!(crate::sort::choco_dist(&mut [7, 3, 2, 4, 9, 12, 56], 3), 2);
         assert_eq!(crate::sort::choco_dist(&mut [5, 3, 2, 8, 4], 7), -1);
+
+        assert_eq!(
+            crate::misc::frequency_sort(String::from("cccaaab")),
+            String::from("aaacccb")
+        );
     }
 
     #[test]
