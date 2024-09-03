@@ -95,3 +95,41 @@ pub fn remove_outer_parentheses_one_liner(s: String) -> String {
         })
         .collect::<String>()
 }
+
+pub fn longest_common_prefix(strs: Vec<String>) -> String {
+    if strs.is_empty() {
+        return String::new();
+    }
+
+    let mut lcp = strs[0].as_str();
+
+    for str in strs.iter() {
+        let mut lci: usize = 0;
+
+        for itr in str.chars().zip(lcp.chars()) {
+            let (ch, lch) = itr;
+
+            if ch == lch {
+                lci += 1;
+            } else {
+                break;
+            }
+        }
+
+        lcp = &lcp[..lci];
+    }
+
+    lcp.to_string()
+}
+
+pub fn longest_common_prefix_one_liner(strs: Vec<String>) -> String {
+    strs.into_iter()
+        .reduce(|a, c| {
+            a.chars()
+                .zip(c.chars())
+                .take_while(|(ach, cch)| ach == cch)
+                .map(|(ach, _)| ach)
+                .collect::<String>()
+        })
+        .unwrap()
+}

@@ -108,7 +108,25 @@ mod tests {
         assert_eq!(
             crate::misc::remove_outer_parentheses_one_liner(String::from("(()())(())(()(()))")),
             String::from("()()()()(())")
-        )
+        );
+
+        assert_eq!(
+            crate::misc::longest_common_prefix(vec![
+                String::from("flower"),
+                String::from("flow"),
+                String::from("flight")
+            ]),
+            String::from("fl")
+        );
+
+        assert_eq!(
+            crate::misc::longest_common_prefix_one_liner(vec![
+                String::from("flower"),
+                String::from("flow"),
+                String::from("flight")
+            ]),
+            String::from("fl")
+        );
     }
 
     #[test]
