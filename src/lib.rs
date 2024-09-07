@@ -132,6 +132,8 @@ mod tests {
             crate::misc::max_depth(String::from("(1+(2*3)+((8)/4))+1")),
             3
         );
+
+        assert_eq!(crate::misc::my_atoi(String::from("1337c0d3")), 1337);
     }
 
     #[test]

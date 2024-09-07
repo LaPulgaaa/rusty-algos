@@ -152,3 +152,57 @@ pub fn max_depth(s: String) -> i32 {
 
     maxd
 }
+
+pub fn my_atoi(str: String) -> i32 {
+    let s = str.trim().to_string();
+
+    let mut is_pos: bool = true;
+
+    let mut skips = 0;
+
+    if s.starts_with('-') {
+        is_pos = false;
+        skips = 1;
+    } else if s.starts_with('+') {
+        is_pos = true;
+        skips = 1;
+    }
+
+    // counting zeroes
+    let mut zeroes = 0;
+
+    for _ch in s
+        .chars()
+        .skip(skips)
+        .take_while(|ch| ch.is_ascii_digit() && *ch == '0')
+    {
+        zeroes += 1;
+    }
+
+    let mut num: i64 = 0;
+
+    for ch in s
+        .chars()
+        .skip(zeroes + skips)
+        .take_while(|ch| ch.is_ascii_digit())
+    {
+        let digit: i64 = ch.to_digit(10).unwrap().into();
+        num = num * 10 + digit;
+
+        if is_pos && num > i32::MAX.into() {
+            num = i32::MAX as i64;
+            return num.try_into().unwrap();
+        } else if !is_pos && num > i32::MAX.into() {
+            num = i32::MIN as i64;
+            return num.try_into().unwrap();
+        }
+    }
+
+    let ret: i32 = num.try_into().unwrap();
+
+    if !is_pos {
+        return -ret;
+    }
+
+    ret
+}
