@@ -133,3 +133,22 @@ pub fn longest_common_prefix_one_liner(strs: Vec<String>) -> String {
         })
         .unwrap()
 }
+
+pub fn max_depth(s: String) -> i32 {
+    let mut maxd: i32 = 0;
+    let mut score: i32 = 0;
+    const OPEN: char = '(';
+    const CLOSE: char = ')';
+
+    for ch in s.chars() {
+        if ch == OPEN {
+            score += 1;
+        } else if ch == CLOSE {
+            score -= 1;
+        }
+
+        maxd = std::cmp::max(score, maxd);
+    }
+
+    maxd
+}

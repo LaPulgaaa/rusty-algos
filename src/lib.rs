@@ -127,6 +127,11 @@ mod tests {
             ]),
             String::from("fl")
         );
+
+        assert_eq!(
+            crate::misc::max_depth(String::from("(1+(2*3)+((8)/4))+1")),
+            3
+        );
     }
 
     #[test]
