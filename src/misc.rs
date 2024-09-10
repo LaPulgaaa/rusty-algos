@@ -206,3 +206,37 @@ pub fn my_atoi(str: String) -> i32 {
 
     ret
 }
+
+pub fn longest_palindrome(s: String) -> String {
+    let len = s.len();
+
+    for gap in (1..len + 1).rev() {
+        let mut start: usize = 0;
+        let mut end: usize = start + gap;
+
+        while end <= len {
+            let sub = &s[start..end];
+
+            if is_palindrome(sub.to_string()) {
+                return sub.to_string();
+            }
+
+            start += 1;
+            end += 1;
+        }
+    }
+
+    String::from("")
+}
+
+fn is_palindrome(str: String) -> bool {
+    for itr in str.chars().zip(str.chars().rev()) {
+        let (lch, rch) = itr;
+
+        if lch != rch {
+            return false;
+        }
+    }
+
+    true
+}

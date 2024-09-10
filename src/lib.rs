@@ -134,6 +134,16 @@ mod tests {
         );
 
         assert_eq!(crate::misc::my_atoi(String::from("1337c0d3")), 1337);
+
+        assert_eq!(
+            crate::misc::longest_palindrome(String::from("xynitin")),
+            String::from("nitin")
+        );
+
+        assert_eq!(
+            crate::misc::longest_palindrome(String::from("varun")),
+            String::from("v")
+        );
     }
 
     #[test]
