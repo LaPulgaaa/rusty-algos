@@ -1,4 +1,4 @@
-use std::cmp::min;
+use std::{cmp::min, collections::HashMap};
 
 // minimum difference in an array
 
@@ -239,4 +239,26 @@ fn is_palindrome(str: String) -> bool {
     }
 
     true
+}
+
+pub fn subarray_sum(nums: Vec<i32>, k: i32) -> i32 {
+    let mut count: i32 = 0;
+    let mut hm: HashMap<i32, i32> = HashMap::new();
+
+    let mut pre_sum: i32 = 0;
+
+    hm.insert(0, 1);
+
+    for &num in nums.iter() {
+        pre_sum += num;
+        let key = pre_sum - k;
+
+        if hm.contains_key(&key) {
+            count += *hm.get(&key).unwrap();
+        }
+
+        *hm.entry(pre_sum).or_insert(0) += 1;
+    }
+
+    count
 }

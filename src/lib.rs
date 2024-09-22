@@ -144,6 +144,8 @@ mod tests {
             crate::misc::longest_palindrome(String::from("varun")),
             String::from("v")
         );
+
+        assert_eq!(crate::misc::subarray_sum(vec![-1, 1, 0], 0), 3);
     }
 
     #[test]
