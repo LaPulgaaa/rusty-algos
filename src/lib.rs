@@ -146,6 +146,8 @@ mod tests {
         );
 
         assert_eq!(crate::misc::subarray_sum(vec![-1, 1, 0], 0), 3);
+
+        assert_eq!(crate::misc::max_product(vec![-2, 3, -4]), 24);
     }
 
     #[test]

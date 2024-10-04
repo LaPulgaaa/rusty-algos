@@ -262,3 +262,20 @@ pub fn subarray_sum(nums: Vec<i32>, k: i32) -> i32 {
 
     count
 }
+
+pub fn max_product(nums: Vec<i32>) -> i32 {
+    let mut res = nums[0];
+
+    let mut maxi: i32 = nums[0];
+    let mut mini: i32 = nums[0];
+
+    for &num in nums.iter().skip(1) {
+        let temp = maxi;
+        maxi = std::cmp::max(num, std::cmp::max(maxi * num, mini * num));
+        mini = std::cmp::min(num, std::cmp::min(num * temp, num * mini));
+
+        res = std::cmp::max(res, std::cmp::max(maxi, mini));
+    }
+
+    res
+}
