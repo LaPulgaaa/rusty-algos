@@ -315,3 +315,32 @@ pub fn sum_subarray_mins(arr: Vec<i32>) -> i32 {
     }
     r
 }
+
+pub fn generate_pascal(num_rows: i32) -> Vec<Vec<i32>> {
+    let mut ret: Vec<Vec<i32>> = vec![];
+
+    ret.push(vec![1]);
+    if num_rows == 1 {
+        return ret;
+    }
+
+    ret.push(vec![1, 1]);
+    if num_rows == 2 {
+        return ret;
+    }
+
+    for i in 1..num_rows - 1 {
+        let prev_row: usize = i.try_into().unwrap();
+        let prev = &ret[prev_row];
+        let mut arr: Vec<i32> = vec![1];
+        for j in 0..prev.len() - 1 {
+            arr.push(prev[j] + prev[j + 1]);
+        }
+
+        arr.push(1);
+
+        ret.push(arr);
+    }
+
+    ret
+}
