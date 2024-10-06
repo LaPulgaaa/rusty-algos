@@ -279,3 +279,39 @@ pub fn max_product(nums: Vec<i32>) -> i32 {
 
     res
 }
+
+pub fn sum_subarray_mins(arr: Vec<i32>) -> i32 {
+    const MOD: i32 = 1_000_000_007;
+    let len = arr.len();
+    let mut r: i32 = arr[0];
+    let mut s: Vec<(usize, i32)> = vec![(0, arr[0])];
+    let mut dp: Vec<i32> = vec![0; len];
+    dp[0] = r;
+    for i in 1..len {
+        let mut t: i32 = arr[i];
+        let mut n: usize = s.len();
+
+        while n > 0 {
+            if s[n - 1].1 > arr[i] {
+                s.pop();
+                n -= 1;
+            } else {
+                break;
+            }
+        }
+
+        if n == 0 {
+            t = (t + (i as i32 * arr[i])) % MOD;
+        } else {
+            let j = s[n - 1].0;
+            t = (t + ((i - j - 1) as i32) * arr[i]) % MOD;
+            t = (t + dp[j]) % MOD;
+        }
+
+        r = (r + t) % MOD;
+        dp[i] = t;
+
+        s.push((i, arr[i]));
+    }
+    r
+}
