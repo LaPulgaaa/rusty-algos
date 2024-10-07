@@ -150,6 +150,13 @@ mod tests {
         assert_eq!(crate::misc::max_product(vec![-2, 3, -4]), 24);
 
         assert_eq!(crate::misc::sum_subarray_mins(vec![3, 1, 2, 4]), 17);
+
+        assert_eq!(crate::misc::asteroid_collision(vec![10, 2, -5]), vec![10]);
+
+        assert_eq!(
+            crate::misc::asteroid_collision(vec![-2, -1, 1, 2]),
+            vec![-2, -1, 1, 2]
+        );
     }
 
     #[test]

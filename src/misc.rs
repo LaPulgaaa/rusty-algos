@@ -1,4 +1,7 @@
-use std::{cmp::min, collections::HashMap};
+use std::{
+    cmp::{min, Ordering},
+    collections::HashMap,
+};
 
 // minimum difference in an array
 
@@ -343,4 +346,29 @@ pub fn generate_pascal(num_rows: i32) -> Vec<Vec<i32>> {
     }
 
     ret
+}
+
+pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {
+    let mut st: Vec<i32> = vec![];
+
+    for &aster in asteroids.iter() {
+        let mut attacker: i32 = aster;
+        let mut dest: bool = false;
+        while !st.is_empty() && attacker < 0 && st.last().unwrap() * attacker < 0 {
+            let target = st.pop().unwrap();
+            match target.abs().cmp(&attacker.abs()) {
+                Ordering::Equal => {
+                    dest = true;
+                    break;
+                }
+                Ordering::Greater => attacker = target,
+                Ordering::Less => (),
+            }
+        }
+        if !dest {
+            st.push(attacker);
+        }
+    }
+
+    st
 }
