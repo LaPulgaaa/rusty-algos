@@ -372,3 +372,35 @@ pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {
 
     st
 }
+
+pub fn remove_kdigits(num: String, m: i32) -> String {
+    let mut st: Vec<char> = vec![];
+    let mut k: i32 = m;
+    for ch in num.chars() {
+        while k > 0
+            && !st.is_empty()
+            && st.last().unwrap().to_digit(10).unwrap() > ch.to_digit(10).unwrap()
+        {
+            st.pop();
+            k -= 1;
+        }
+
+        st.push(ch);
+    }
+
+    while k > 0 && !st.is_empty() {
+        st.pop();
+        k -= 1;
+    }
+    let mut ret = st
+        .into_iter()
+        .map(|x| x.to_string())
+        .collect::<Vec<String>>()
+        .join("");
+
+    ret = ret.replace('0', " ");
+    ret = ret.trim_start().to_string();
+    ret = ret.replace(' ', "0");
+
+    ret
+}

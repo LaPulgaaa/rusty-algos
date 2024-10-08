@@ -157,6 +157,16 @@ mod tests {
             crate::misc::asteroid_collision(vec![-2, -1, 1, 2]),
             vec![-2, -1, 1, 2]
         );
+
+        assert_eq!(
+            crate::misc::remove_kdigits(String::from("1432219"), 3),
+            String::from("1219")
+        );
+
+        assert_eq!(
+            crate::misc::remove_kdigits(String::from("10200"), 1),
+            String::from("200")
+        );
     }
 
     #[test]
