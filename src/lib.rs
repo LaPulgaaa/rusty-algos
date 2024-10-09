@@ -167,6 +167,11 @@ mod tests {
             crate::misc::remove_kdigits(String::from("10200"), 1),
             String::from("200")
         );
+
+        assert_eq!(
+            crate::misc::trap(vec![0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]),
+            6
+        )
     }
 
     #[test]

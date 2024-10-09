@@ -404,3 +404,31 @@ pub fn remove_kdigits(num: String, m: i32) -> String {
 
     ret
 }
+
+pub fn trap(height: Vec<i32>) -> i32 {
+    let len = height.len();
+    let mut pre_max = vec![0; len];
+    let mut post_max = vec![0; len];
+
+    let mut max = height[0];
+    for (i, &num) in height.iter().skip(1).enumerate() {
+        pre_max[i + 1] = max;
+        max = std::cmp::max(max, num);
+    }
+
+    max = height[len - 1];
+    for (i, &num) in height.iter().rev().skip(1).enumerate() {
+        post_max[len - i - 2] = max;
+        max = std::cmp::max(max, num);
+    }
+    let mut water: i32 = 0;
+    for (i, &num) in height.iter().enumerate() {
+        let min = std::cmp::min(pre_max[i], post_max[i]);
+
+        if min > num {
+            water += min - num;
+        }
+    }
+
+    water
+}
