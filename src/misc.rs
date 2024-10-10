@@ -470,3 +470,21 @@ pub fn three_sum(mut nums: Vec<i32>) -> usize {
 
     ret.len()
 }
+
+pub fn find_max_length(nums: Vec<i32>) -> i32 {
+    use std::collections::HashMap;
+
+    let mut prefix_sum: i32 = 0;
+    let mut ans: i32 = 0;
+    let mut mp: HashMap<i32, i32> = HashMap::new();
+    mp.insert(0, -1);
+    for (i, num) in nums.into_iter().enumerate() {
+        prefix_sum += if num == 1 { 1 } else { -1 };
+        if let std::collections::hash_map::Entry::Vacant(e) = mp.entry(prefix_sum) {
+            e.insert(i as i32);
+        } else {
+            ans = std::cmp::max(ans, i as i32 - *mp.get(&prefix_sum).unwrap());
+        }
+    }
+    ans
+}
