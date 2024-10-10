@@ -171,7 +171,12 @@ mod tests {
         assert_eq!(
             crate::misc::trap(vec![0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]),
             6
-        )
+        );
+
+        assert_eq!(
+            crate::misc::three_sum(vec![-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0]),
+            6
+        );
     }
 
     #[test]

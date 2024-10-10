@@ -432,3 +432,41 @@ pub fn trap(height: Vec<i32>) -> i32 {
 
     water
 }
+
+pub fn three_sum(mut nums: Vec<i32>) -> usize {
+    nums.sort();
+
+    let mut ret: Vec<Vec<i32>> = vec![];
+
+    for i in 0..nums.len() - 2 {
+        let fixed = i;
+        if fixed > 0 && nums[fixed] == nums[fixed - 1] {
+            continue;
+        }
+
+        let mut start: usize = i + 1;
+        let mut end: usize = nums.len() - 1;
+        let search = -nums[fixed];
+
+        while start < end {
+            if (nums[start] + nums[end]) == search {
+                ret.push(vec![nums[fixed], nums[start], nums[end]]);
+
+                while start < end && nums[start] == nums[start + 1] {
+                    start += 1;
+                }
+                while start < end && nums[end] == nums[end - 1] {
+                    end -= 1;
+                }
+                start += 1;
+                end -= 1;
+            } else if (nums[start] + nums[end]) >= search {
+                end -= 1;
+            } else {
+                start += 1;
+            }
+        }
+    }
+
+    ret.len()
+}
