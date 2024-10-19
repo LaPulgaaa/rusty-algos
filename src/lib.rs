@@ -182,6 +182,11 @@ mod tests {
             crate::misc::find_max_length(vec![0, 1, 0, 0, 1, 0, 1, 1]),
             8
         );
+
+        assert_eq!(
+            crate::misc::length_of_longest_substring(String::from("dvdf")),
+            3
+        );
     }
 
     #[test]

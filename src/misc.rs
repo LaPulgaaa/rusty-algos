@@ -488,3 +488,20 @@ pub fn find_max_length(nums: Vec<i32>) -> i32 {
     }
     ans
 }
+
+pub fn length_of_longest_substring(s: String) -> i32 {
+    let mut mp: HashMap<char, usize> = HashMap::new();
+    let mut max_len: usize = 0;
+    let mut prev_idx: usize = 0;
+    s.char_indices().for_each(|(i, c)| {
+        if let Some(&stored_idx) = mp.get(&c) {
+            max_len = std::cmp::max(max_len, i - prev_idx);
+            // prev_idx = std::cmp::max(prev_idx,stored_idx+1);
+            prev_idx = stored_idx + 1;
+        }
+        mp.insert(c, i);
+    });
+
+    max_len = std::cmp::max(max_len, s.len() - prev_idx);
+    max_len as i32
+}
