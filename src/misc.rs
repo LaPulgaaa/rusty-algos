@@ -505,3 +505,20 @@ pub fn length_of_longest_substring(s: String) -> i32 {
     max_len = std::cmp::max(max_len, s.len() - prev_idx);
     max_len as i32
 }
+
+pub fn max_len_with_zero_sum(arr: Vec<i32>) -> i32 {
+    let mut pre_sum: i32 = 0;
+    let mut max: i32 = 0;
+    let mut mp: HashMap<i32, i32> = HashMap::new();
+
+    for (i, num) in arr.into_iter().enumerate() {
+        pre_sum += num;
+        if let std::collections::hash_map::Entry::Vacant(e) = mp.entry(pre_sum) {
+            e.insert(i as i32);
+        } else {
+            max = std::cmp::max(max, i as i32 - *mp.get(&pre_sum).unwrap())
+        }
+    }
+
+    max
+}
