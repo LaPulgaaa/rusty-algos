@@ -187,6 +187,11 @@ mod tests {
             crate::misc::length_of_longest_substring(String::from("dvdf")),
             3
         );
+
+        assert_eq!(
+            crate::misc::binary_subarr_with_sum(vec![0, 0, 0, 0, 0], 0),
+            15
+        )
     }
 
     #[test]

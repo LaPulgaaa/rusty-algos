@@ -522,3 +522,24 @@ pub fn max_len_with_zero_sum(arr: Vec<i32>) -> i32 {
 
     max
 }
+
+pub fn binary_subarr_with_sum(nums: Vec<i32>, goal: i32) -> i32 {
+    let mut mp: HashMap<i32, i32> = HashMap::new();
+
+    mp.insert(0, 1);
+
+    let mut sum: i32 = 0;
+    let mut ret: i32 = 0;
+
+    for num in nums {
+        sum += num;
+
+        if let Some(&count) = mp.get(&(sum - goal)) {
+            ret += count;
+        }
+
+        mp.entry(sum).and_modify(|x| *x += 1).or_insert(1);
+    }
+
+    ret
+}
