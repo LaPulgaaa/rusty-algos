@@ -191,6 +191,11 @@ mod tests {
         assert_eq!(
             crate::misc::binary_subarr_with_sum(vec![0, 0, 0, 0, 0], 0),
             15
+        );
+
+        assert_eq!(
+            crate::misc::merge(vec![vec![1, 3], vec![2, 6], vec![8, 10], vec![15, 18]]),
+            vec![vec![1, 6], vec![8, 10], vec![15, 18]]
         )
     }
 

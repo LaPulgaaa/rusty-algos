@@ -543,3 +543,33 @@ pub fn binary_subarr_with_sum(nums: Vec<i32>, goal: i32) -> i32 {
 
     ret
 }
+
+pub fn merge(arg: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let mut res: Vec<Vec<i32>> = vec![];
+
+    let mut intervals = arg.clone();
+    intervals.sort_by(|a, b| a[0].cmp(&b[0]));
+
+    if intervals.is_empty() {
+        return res;
+    }
+
+    res.push(intervals[0].clone());
+
+    for arr in intervals.into_iter().skip(1) {
+        let prev_last = res.last().unwrap()[1];
+        let next_first = arr[0];
+
+        if prev_last >= next_first {
+            let prev_first = res.pop().unwrap()[0];
+            let next_last = arr[1];
+
+            res.push(vec![prev_first, next_last]);
+        } else {
+            let new_arr = &arr[0..];
+            res.push(new_arr.to_vec());
+        }
+    }
+
+    res
+}
