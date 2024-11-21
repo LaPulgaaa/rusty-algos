@@ -1,9 +1,9 @@
+pub mod arrays;
 pub mod misc;
 pub mod partition;
 pub mod searching;
 pub mod sort;
 pub mod strings;
-pub mod arrays;
 
 #[cfg(test)]
 mod tests {
@@ -273,5 +273,12 @@ mod tests {
             crate::strings::rabin_karp(String::from("❤"), String::from("Rust is a systems programming language ❤ focused on safety, speed, and concurrency ❤. Rust has been gaining popularity due to its ability to prevent memory safety issues and provide zero-cost abstractions. Developers are choosing Rust for building reliable and efficient software, and Rust's ownership model ensures that data races are minimized ❤. Rust's ecosystem is growing, with a strong community contributing to its libraries and tools ❤. If you're looking to learn a new programming language, Rust might be an excellent choice because Rust offers a unique combination of power and safety.")),
             4
         );
+    }
+
+    #[test]
+    fn test_matrix_and_arrays() {
+        let mut arr = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
+        crate::arrays::rotate_effi(&mut arr);
+        assert_eq!(arr, vec![vec![7, 4, 1], vec![8, 5, 2], vec![9, 6, 3]]);
     }
 }
