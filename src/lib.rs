@@ -3,6 +3,7 @@ pub mod partition;
 pub mod searching;
 pub mod sort;
 pub mod strings;
+pub mod arrays;
 
 #[cfg(test)]
 mod tests {
