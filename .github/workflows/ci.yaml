@@ -29,10 +29,6 @@ jobs:
 
     - name: Dependencies
       uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose
-      env: 
-        RUST_BACKTRACE: 1
     - name: Format
       run: cargo fmt -- --check
     - name: Clippy/Lint
