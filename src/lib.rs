@@ -47,6 +47,8 @@ mod tests {
         let mut dutch_arr = vec![2, 0, 2, 1, 1, 0];
         crate::sort::dutch_national_flag_algo(&mut dutch_arr);
         assert_eq!(dutch_arr, [0, 0, 1, 1, 2, 2]);
+
+        assert_eq!(crate::misc::good_pair(vec![1, 2, 3, 1, 1, 3]), 4);
     }
 
     #[test]

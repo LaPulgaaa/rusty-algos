@@ -573,3 +573,13 @@ pub fn merge(arg: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 
     res
 }
+
+pub fn good_pair(nums: Vec<i32>) -> i32 {
+    let mut track = [0; 101];
+
+    for num in nums {
+        track[num as usize] += 1;
+    }
+
+    track.iter().map(|n| n * (n - 1) / 2).sum()
+}
