@@ -4,7 +4,7 @@ pub fn set_zeroes(matrix: &mut [Vec<i32>]) {
     let mut marked_col: HashSet<usize> = HashSet::new();
 
     for row in matrix.iter_mut() {
-        let has_zero = row.iter().any(|x| *x == 0);
+        let has_zero = row.contains(&0);
 
         if !has_zero {
             continue;
