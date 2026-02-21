@@ -51,14 +51,12 @@ pub fn rotate(matrix: &mut [Vec<i32>]) {
 pub fn rotate_effi(arr: &mut [Vec<i32>]) {
     let len: usize = arr.len();
 
-    for i in 0..len / 2 {
-        for j in 0..len {
-            let temp = arr[i][j];
-            arr[i][j] = arr[len - i - 1][j];
-            arr[len - i - 1][j] = temp;
+    for col in arr.iter_mut() {
+        for j in 0..(col.len() / 2) {
+            col.swap(j, len - j - 1);
         }
     }
-
+    #[allow(clippy::needless_range_loop)]
     for i in 0..arr.len() {
         for j in i..arr.len() {
             let temp = arr[j][i];

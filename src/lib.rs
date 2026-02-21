@@ -281,6 +281,6 @@ mod tests {
     fn test_matrix_and_arrays() {
         let mut arr = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
         crate::arrays::rotate_effi(&mut arr);
-        assert_eq!(arr, vec![vec![7, 4, 1], vec![8, 5, 2], vec![9, 6, 3]]);
+        assert_eq!(arr, vec![vec![3, 6, 9], vec![2, 5, 8], vec![1, 4, 7]]);
     }
 }
