@@ -157,57 +157,37 @@ pub fn max_depth(s: String) -> i32 {
 }
 
 pub fn my_atoi(str: String) -> i32 {
-    let s = str.trim().to_string();
+    let s = str.trim_start();
 
-    let mut is_pos: bool = true;
+    // create a peakable iterator
+    let mut sitr = s.chars().peekable();
 
-    let mut skips = 0;
+    let mut is_neg: bool = false;
 
-    if s.starts_with('-') {
-        is_pos = false;
-        skips = 1;
-    } else if s.starts_with('+') {
-        is_pos = true;
-        skips = 1;
-    }
-
-    // counting zeroes
-    let mut zeroes = 0;
-
-    for _ch in s
-        .chars()
-        .skip(skips)
-        .take_while(|ch| ch.is_ascii_digit() && *ch == '0')
-    {
-        zeroes += 1;
-    }
-
-    let mut num: i64 = 0;
-
-    for ch in s
-        .chars()
-        .skip(zeroes + skips)
-        .take_while(|ch| ch.is_ascii_digit())
-    {
-        let digit: i64 = ch.to_digit(10).unwrap().into();
-        num = num * 10 + digit;
-
-        if is_pos && num > i32::MAX.into() {
-            num = i32::MAX as i64;
-            return num.try_into().unwrap();
-        } else if !is_pos && num > i32::MAX.into() {
-            num = i32::MIN as i64;
-            return num.try_into().unwrap();
+    if let Some(&ch) = sitr.peek() {
+        if ch == '-' {
+            is_neg = true;
+            sitr.next();
+        } else if ch == '+' {
+            sitr.next();
         }
     }
 
-    let ret: i32 = num.try_into().unwrap();
+    let mut num: i32 = 0;
+    for ch in sitr {
+        if !ch.is_numeric() {
+            break;
+        }
 
-    if !is_pos {
-        return -ret;
+        let digit = ch.to_digit(10).unwrap() as i32;
+        if is_neg {
+            num = num.saturating_mul(10).saturating_sub(digit);
+        } else {
+            num = num.saturating_mul(10).saturating_add(digit);
+        }
     }
 
-    ret
+    num
 }
 
 pub fn longest_palindrome(s: String) -> String {
