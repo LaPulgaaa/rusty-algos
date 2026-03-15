@@ -278,6 +278,39 @@ mod tests {
     }
 
     #[test]
+    fn test_group_anagram() {
+        let input = vec![
+            String::from("eat"),
+            String::from("tea"),
+            String::from("tan"),
+            String::from("ate"),
+            String::from("nat"),
+            String::from("bat"),
+        ];
+        let mut result = crate::strings::group_anagram(input);
+        // Sort inner vecs and outer vec for deterministic comparison
+        for group in result.iter_mut() {
+            group.sort();
+        }
+        result.sort();
+        assert_eq!(
+            result,
+            vec![vec!["ate", "eat", "tea"], vec!["bat"], vec!["nat", "tan"],]
+        );
+    }
+
+    #[test]
+    fn test_group_anagram_empty_strings() {
+        let input = vec![String::from(""), String::from(""), String::from("a")];
+        let mut result = crate::strings::group_anagram(input);
+        for group in result.iter_mut() {
+            group.sort();
+        }
+        result.sort();
+        assert_eq!(result, vec![vec!["", ""], vec!["a"],]);
+    }
+
+    #[test]
     fn test_matrix_and_arrays() {
         let mut arr = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
         crate::arrays::rotate_effi(&mut arr);

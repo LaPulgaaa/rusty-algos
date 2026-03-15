@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 pub fn check_palindrome(s: String) -> bool {
     let mut str = s.clone();
@@ -199,4 +199,20 @@ pub fn rabin_karp(mut patt: String, mut text: String) -> usize {
         }
     }
     matched.len()
+}
+
+pub fn group_anagram(strs: Vec<String>) -> Vec<Vec<String>> {
+    let mut str_to_anagram: HashMap<String, Vec<String>> = HashMap::new();
+
+    for str in strs {
+        let mut arr_char: Vec<char> = str.clone().chars().collect();
+        arr_char.sort_unstable();
+        let sorted_char_str: String = arr_char.iter().collect();
+        str_to_anagram
+            .entry(sorted_char_str)
+            .and_modify(|arr| arr.push(str.clone()))
+            .or_insert(vec![str]);
+    }
+
+    str_to_anagram.into_values().collect::<Vec<Vec<String>>>()
 }
